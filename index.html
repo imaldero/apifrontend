@@ -5,8 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <form id="input-form"></form>
+    <div class="container">
+      <div class="qs">
+        <h1>APTAUJA</h1>
+        <label>1. Kā jūs sauc?</label><br />
+        <input type="text" id="q1" placeholder="Jānis Bērziņš" /> <br />
+        <label>2. Kāda ir jūsu profesija?</label><br />
+        <input type="text" id="q2" placeholder="Programmētājs" /><br />
+        <label>3. Cik reizes gadā jūs svinat dzimšanas dienu?</label><br />
+        <input type="number" id="q3" placeholder="1" /><br />
+        <button id="submit">IESNIEGT</button><br />
+        <table id="table"></table>
+      </div>
+    </div>
   </body>
 </html>

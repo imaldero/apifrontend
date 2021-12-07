@@ -1,12 +1,65 @@
 const form = document.querySelector(`#input-form`);
-const name = document.querySelector(`#name`);
-const surname = document.querySelector(`#surname`);
+const first = document.querySelector(`#q1`);
+const second = document.querySelector(`#q2`);
+const third = document.querySelector(`#q3`);
+const submit = document.querySelector(`#submit`);
+const table = document.querySelector(`#table`);
 
-form.addEventListener(`submit`, function (e) {
-  e.preventDefault();
-  const jsonData = JSON.stringify[(name.value, surname.value)];
-  fetch(`deez.nuts/id`, {
+const delReq = async (id) => {
+  fetch(`http://127.0.0.1:3000/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => loadPage());
+};
+
+submit.addEventListener(`click`, function () {
+  console.log(second.value);
+  fetch(`http://127.0.0.1:3000/`, {
     method: "POST",
-    body: jsonData,
-  });
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      question1: first.value,
+      question2: second.value,
+      question3: third.value,
+    }),
+    // body: JSON.stringify({ test: "deez" }),
+  })
+    .then((res) => res.json())
+    .then((res) => console.log(res));
 });
+
+// fetch("http://127.0.0.1:3000/")
+//   .then((D) => D.json())
+//   .then((N) => {
+//     document.body.insertAdjacentHTML(
+//       "beforeend",
+//       `
+//     <h1>${N.data[0][0]}</h1>
+//     `
+//     );
+//   });
+
+const loadPage = async () => {
+  table.innerHTML = "";
+  table.innerHTML = "<tr><th>1.</th><th>2.</th><th>3.</th><th>Dzēst</th></tr>";
+  fetch("http://127.0.0.1:3000/")
+    .then((res) => res.json())
+    .then((res) =>
+      res.data.map((e) => {
+        table.innerHTML += `<tr><td>${e.question1}</td><td>${e.question2}</td><td>${e.question3}</td><td><button class="del" id="${e._id}">Dzēst</button></td></tr>`;
+      })
+    )
+    .then((res) => {
+      const del = document.querySelectorAll(".del");
+      del.forEach((element) => {
+        element.addEventListener("click", (e) => {
+          delReq(element.id);
+        });
+      });
+    });
+};
+loadPage();
