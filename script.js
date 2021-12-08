@@ -5,17 +5,29 @@ const third = document.querySelector(`#q3`);
 const submit = document.querySelector(`#submit`);
 const table = document.querySelector(`#table`);
 
+const validate = function () {
+  const arr = [first, second, third];
+  const msgArr = [`Pirmais`, `Otrais`, `Trešais`];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].value === "") {
+      alert(`${msgArr[i]} lauks nedrīkst būt tukšs!`);
+    }
+  }
+};
+
 const delReq = async (id) => {
   fetch(`http://127.0.0.1:3000/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((res) => loadPage());
+  }).then((res) => pageReload());
 };
 
 submit.addEventListener(`click`, function () {
-  console.log(second.value);
+  const first = document.querySelector(`#q1`);
+  const second = document.querySelector(`#q2`);
+  const third = document.querySelector(`#q3`);
   fetch(`http://127.0.0.1:3000/`, {
     method: "POST",
     headers: {
@@ -29,7 +41,9 @@ submit.addEventListener(`click`, function () {
     // body: JSON.stringify({ test: "deez" }),
   })
     .then((res) => res.json())
-    .then((res) => console.log(res));
+    .then((res) => pageReload());
+
+  validate();
 });
 
 // fetch("http://127.0.0.1:3000/")
@@ -43,7 +57,7 @@ submit.addEventListener(`click`, function () {
 //     );
 //   });
 
-const loadPage = async () => {
+const pageReload = async () => {
   table.innerHTML = "";
   table.innerHTML = "<tr><th>1.</th><th>2.</th><th>3.</th><th>Dzēst</th></tr>";
   fetch("http://127.0.0.1:3000/")
@@ -62,4 +76,4 @@ const loadPage = async () => {
       });
     });
 };
-loadPage();
+pageReload();
