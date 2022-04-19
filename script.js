@@ -16,7 +16,7 @@ const validate = function () {
 };
 
 const delReq = async (id) => {
-  fetch(`http://127.0.0.1:3000/${id}`, {
+  fetch(`https://api-aptauja.herokuapp.com/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +28,7 @@ submit.addEventListener(`click`, function () {
   const first = document.querySelector(`#q1`);
   const second = document.querySelector(`#q2`);
   const third = document.querySelector(`#q3`);
-  fetch(`http://127.0.0.1:3000/`, {
+  fetch(`mongodb+srv://imaldero:Ralsir01@cluster0.xgcor.mongodb.net/test`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -60,7 +60,7 @@ submit.addEventListener(`click`, function () {
 const pageReload = async () => {
   table.innerHTML = "";
   table.innerHTML = "<tr><th>1.</th><th>2.</th><th>3.</th><th>Dzēst</th></tr>";
-  fetch("http://127.0.0.1:3000/")
+  fetch("https://api-aptauja.herokuapp.com/")
     .then((res) => res.json())
     .then((res) =>
       res.data.map((e) => {

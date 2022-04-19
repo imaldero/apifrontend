@@ -62,8 +62,6 @@ h1 {
 button {
   align-self: center;
   cursor: pointer;
-  width: 250px;
-  height: 30px;
   background: white;
   border-radius: 25px;
   font-weight: 600;
