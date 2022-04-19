@@ -28,7 +28,7 @@ submit.addEventListener(`click`, function () {
   const first = document.querySelector(`#q1`);
   const second = document.querySelector(`#q2`);
   const third = document.querySelector(`#q3`);
-  fetch(`mongodb+srv://imaldero:Ralsir01@cluster0.xgcor.mongodb.net/test`, {
+  fetch(`mongodb+srv://imaldero2:imaldero123@cluster0.xgcor.mongodb.net/test`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
